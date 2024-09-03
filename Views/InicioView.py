@@ -1,6 +1,6 @@
 import flet as ft
 from Views.RegisterView import RegisterView
-from Views.EncuestaView import EncuestaView
+from Views.EncuestaDiabetico import EncuestaDiabeticos
 from DAO.Factory.ConexionManager import ConexionManager
 from Views.VisualizarView import ViewVisualizar
 class InicioView():
@@ -23,7 +23,7 @@ class InicioView():
         )
 
         self.registroView = RegisterView(page)
-        self.encuestaDiabetico = EncuestaView(page,self.navBar).getEncuestaDiabeticoView()
+        self.encuestaDiabetico = EncuestaDiabeticos(page,self.navBar)
         self.visualizar = ViewVisualizar(page,self.navBar)
 
     
@@ -32,7 +32,8 @@ class InicioView():
   
         if destination.data == "0":
             self.page.views.pop()
-            self.page.views.append(self.encuestaDiabetico)
+            
+            self.page.views.append(self.encuestaDiabetico.getEncuestaDiabeticoView())
         if destination.data == "1":
             self.page.views.pop()
             self.page.views.append(self.visualizar.getViewVisualizar())
